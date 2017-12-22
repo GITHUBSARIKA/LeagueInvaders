@@ -5,6 +5,8 @@ public class GameObject {
      int y;
      int width;
      int height;
+     boolean isAlive;
+     
 
 	GameObject(int x, int y, int width, int height){
 	this.x=x;
