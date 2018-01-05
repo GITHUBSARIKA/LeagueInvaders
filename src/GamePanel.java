@@ -18,7 +18,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font subtitleFont;
 	int currentState = MENU_STATE;
 	RocketShip rocketship = new RocketShip(250, 700, 50, 50);
-     ObjectManager objectmanager= new ObjectManager(rocketship);
+	ObjectManager objectmanager = new ObjectManager(rocketship);
+
 	GamePanel() {
 		timer = new Timer(1000 / 60, this);
 		titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -72,16 +73,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		}
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			rocketship.up=true;
+			rocketship.up = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			rocketship.down=true;
+			rocketship.down = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			rocketship.right=true;
+			rocketship.right = true;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			rocketship.left=true;
+			rocketship.left = true;
+		}
+		if (e.getKeyCode()==KeyEvent.VK_SPACE) {
+			objectmanager.addProjectile(new Projectiles(rocketship.x, rocketship.y, 10,10));
+
+
 		}
 	}
 
@@ -89,19 +95,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode() == KeyEvent.VK_UP) {
-			rocketship.up=false;
+			rocketship.up = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-			rocketship.down=false;
+			rocketship.down = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			rocketship.right=false;
+			rocketship.right = false;
 		}
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			rocketship.left=false;
+			rocketship.left = false;
 		}
 	}
-	
 
 	void updateMenuState() {
 
