@@ -85,7 +85,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			rocketship.left = true;
 		}
 		if (e.getKeyCode()==KeyEvent.VK_SPACE) {
-			objectmanager.addProjectile(new Projectiles(rocketship.x, rocketship.y, 10,10));
+			objectmanager.addProjectile(new Projectiles(rocketship.x+(rocketship.width /2), rocketship.y, 10,10));
 
 
 		}
