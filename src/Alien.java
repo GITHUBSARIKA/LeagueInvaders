@@ -2,22 +2,29 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Alien extends GameObject {
-public Alien(int x, int y, int width, int height) {
+int xspeed = -5;
+	
+	public Alien(int x, int y, int width, int height) {
 	super(x, y, width, height);
 }
 void update() {
-	y++;
+	y+=5;
+	
 	if (y<=0) {
 		isAlive=false;
-	}	
+	}
+	
+	x += xspeed;
+	
+	if(x < 0) {
+		xspeed=5;
+	}
+	
 	
 }
 void draw(Graphics g) {
 	g.setColor(Color.YELLOW);
 	g.drawRect(x, y, width, height);
 }
-void addAlien() {
-	
-	Alien alien=new Alien(x,y,width,height);
-}
+
 }
