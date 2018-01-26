@@ -5,6 +5,7 @@ import java.util.Random;
 public class ObjectManager {
 	long enemyTimer;
 	int enemySpawnTime;
+	int score;
 	ArrayList<Projectiles> projectiles = new ArrayList<>();
 	ArrayList<Alien> aliens = new ArrayList<Alien>();
 
@@ -14,6 +15,7 @@ public class ObjectManager {
 		rocketship = r;
 		enemyTimer = 0;
 		enemySpawnTime = 1000;
+		score=0;
 	}
 
 	void update() {
@@ -21,7 +23,7 @@ public class ObjectManager {
 		for (Projectiles j : projectiles) {
 			j.update();
 		}
-		for(Alien k: aliens) {
+		for (Alien k : aliens) {
 			k.update();
 		}
 	}
@@ -30,10 +32,13 @@ public class ObjectManager {
 		rocketship.draw(g);
 		for (Projectiles j : projectiles) {
 			j.draw(g);
-		for(Alien k:aliens) {
+			
+		}
+		for (Alien k : aliens) {
 			k.draw(g);
 		}
-		}
+			
+		
 	}
 
 	void addProjectile(Projectiles projectile) {
@@ -44,12 +49,23 @@ public class ObjectManager {
 		aliens.add(alien);
 
 	}
-void purgeObjects() {
-	for(int i = 0; i < aliens.size(); i++){
-		Alien alien = aliens.get(i);
-		
-	}	
-}
+
+	void purgeObjects() {
+		for (int i = 0; i < aliens.size(); i++) {
+			Alien alien = aliens.get(i);
+			if (alien.isAlive == false) {
+				aliens.remove(alien);
+			}
+		}
+		for (int i = 0; i < projectiles.size(); i++) {
+			Projectiles projectile = projectiles.get(i);
+			if (projectile.isAlive == false) {
+				projectiles.remove(projectile);
+			}
+
+		}
+	}
+
 	public void manageEnemies() {
 
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
@@ -57,6 +73,32 @@ void purgeObjects() {
 
 			enemyTimer = System.currentTimeMillis();
 		}
+	}
+
+	void checkCollision() {
+		for (Alien a : aliens) {
+
+			if (rocketship.collisionBox.intersects(a.collisionBox)) {
+
+				rocketship.isAlive = false;
+
+			}
+			for (Projectiles p : projectiles) {
+				if (p.collisionBox.intersects(a.collisionBox)) {
+
+					p.isAlive = false;
+					a.isAlive = false;
+					score++;
+
+				}
+
+			}
+			
+		}
+	}
+	int getScore() {
+		return score;
+		
 	}
 
 }

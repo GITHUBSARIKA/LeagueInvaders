@@ -8,6 +8,7 @@ int xspeed = -5;
 	super(x, y, width, height);
 }
 void update() {
+	   super.update();
 	y+=5;
 	
 	if (y<=0) {
