@@ -100,5 +100,8 @@ public class ObjectManager {
 		return score;
 		
 	}
+	void reset() {
+		
+	}
 
 }
